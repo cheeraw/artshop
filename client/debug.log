@@ -1,0 +1,4 @@
+[0824/220950.078:ERROR:process_info.cc(359)] UncheckedAllocate
+[0824/220950.126:ERROR:process_reader_win.cc(242)] ReadMemory at 0x12dacd5c of 512 bytes failed: Error (0x13D) while retrieving error. (0x12B)
+[0824/220950.130:ERROR:crash_report_exception_handler.cc(111)] WriteEverything failed
+[0824/220950.427:ERROR:filesystem_win.cc(148)] DeleteFile C:\Users\cheeraw\AppData\Local\Google\Chrome\User Data\Crashpad\reports\9138cadc-daec-4764-a695-ff625a97e956.dmp: The process cannot access the file because it is being used by another process. (0x20)

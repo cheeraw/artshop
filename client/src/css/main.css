@@ -1,0 +1,67 @@
+.item {
+  width: 280px;
+  height: 280px;
+  float: left;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  background-color: #F5F5F5;
+  box-shadow: 0 0 15px cornflowerblue;
+  border-radius: 2px 2px 30px 30px;
+}
+
+.item img {
+  margin-top: 10px;
+  margin-left: 40px;
+  margin-bottom: 10px;
+  width: 200px;
+  height: 200px;
+  border-radius: 3px 3px 3px 3px;
+}
+
+.item img:hover {
+  margin-top: 5px;
+  margin-left: 35px;
+  margin-bottom: 5px;
+  width: 210px;
+  height: 210px;
+}
+
+.picture-name {
+  width: 150px;
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #808080;
+  padding-left: 25px;
+  margin: 0;
+  float: left;
+}
+
+.artist {
+  padding-left: 25px;
+  width: 150px;
+  font-family: monospace;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0;
+  float: left;
+  color: #034f84;
+}
+
+.artist a:hover {
+  color: lightskyblue;
+  text-decoration: none;
+}
+
+.price {
+  margin-right: 25px;
+  padding-top: 5px;
+  float: right;
+  font-family: fantasy;
+  font-size: 30px;
+  color: cornflowerblue;
+}
+.page-content-wrapper {
+  padding-top: 20px;
+  background-color: #d5f4e6;
+}

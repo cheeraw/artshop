@@ -1,0 +1,23 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "fetch": "^1.1.0",
+    "react": "^16.4.1",
+    "react-bootstrap": "^0.32.3",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4",
+    "superagent": "^3.8.3",
+    "superagent-no-cache": "^0.1.1",
+    "superagent-prefix": "0.0.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:5000/"
+}

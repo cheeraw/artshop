@@ -1,0 +1,48 @@
+.sidebar-wrapper {
+  z-index: 1;
+  width: 300px;
+  height: 100%;
+  overflow-y: hidden;
+  position: absolute;
+  top: 50px;
+  background-color: teal;
+  box-shadow: 0 0 15px cornflowerblue;
+}
+
+.sidebarDisplayed {
+  width: 0px;
+}
+
+.page-content-wrapper {
+  margin-left: 300px;
+}
+
+.moveToLeft {
+  margin-left: 0px;
+}
+
+.sidebar-nav li {
+  list-style-type: none;
+  margin-top: 30px;
+}
+
+.dropdown li {
+  margin:0;
+}
+
+.sidebar-nav button {
+  color: cornflowerblue;
+  background-color: white;
+  width: 200px;
+  border-radius: 20px;
+}
+
+.sidebar-nav button:hover {
+  color: white;
+  background-color: cornflowerblue;
+}
+
+.sidebar-nav button:active {
+  color: white;
+  background-color: cornflowerblue;
+}
