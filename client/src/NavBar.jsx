@@ -11,6 +11,7 @@ class NavBar extends React.Component {
         <SearchForm />
         <Dropdown
           toggleLogin={this.props.toggleLogin}
+          toggleRegistration={this.props.toggleRegistration}
           userLoggedIn={this.props.userLoggedIn}
           buttonClassName="userbutton"
           icon="user"

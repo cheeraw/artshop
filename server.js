@@ -1,12 +1,14 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
+const session = require('express-session');
 
 var pg = require('pg');
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({ secret: "ugandarwandaburundi", cookie: {maxAge: 5*60000}}));
 
 var config = {
   user: 'cheeraw',
@@ -129,7 +131,7 @@ app.get("/register/emailcheck", (req, res, next) => {
       done();
 
       if(err) {
-        res.status(406).send({ error: "error running query " + err});
+        res.status(406).send({ error: "error running query " + err, message: "queryError"});
         return console.error("error running query", err);
       } else {
         if(typeof(result.rows[0]) === 'undefined') {
@@ -138,6 +140,49 @@ app.get("/register/emailcheck", (req, res, next) => {
           res.status(200).send({message: "emailExists"});
         }
         return console.log("username checked");
+      }
+    });
+  });
+});
+
+app.post("/login", (req, res, next) => {
+  var username = req.body.username;
+  var password = req.body.password;
+  console.log(username);
+  console.log(password);
+
+  var sql = "SELECT * FROM public.artists WHERE username=$1";
+  var values = [username];
+
+  pool.connect((err, client, done) => {
+    if(err) {
+      return console.error("error fetching client from pool", err);
+    }
+
+    client.query(sql, values, (err, result) => {
+      done();
+
+      if(err) {
+        res.status(406).send({ error: "error running query " + err, message: "queryError"});
+        console.log("error running query", err);
+      } else {
+        if(typeof(result.rows[0]) == 'undefined') {
+          res.status(200).send({message: "invalid username or password"});
+        } else {
+          var password_hash = result.rows[0].password_hash;
+          console.log(password_hash);
+          bcrypt.compare(password, password_hash, (errr, ress) => {
+            console.log(ress);
+            if(ress == true) {
+              res.status(200).send({message: "loginSuccess"});
+              console.log("success");
+            }
+            else {
+              res.status(406).send({message: "invalid username or password"});
+              console.log("fail");
+            }
+          });
+        }
       }
     });
   });

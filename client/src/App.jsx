@@ -17,6 +17,7 @@ class App extends React.Component {
     }
 
     this.toggleLoginForm = this.toggleLoginForm.bind(this);
+    this.toggleRegistrationForm = this.toggleRegistrationForm.bind(this);
   }
 
   toggleLoginForm() {
@@ -24,14 +25,21 @@ class App extends React.Component {
 
     this.setState({loginForm: newState});
   }
+
+  toggleRegistrationForm() {
+    const newState = this.state.registrationForm ? false : true;
+
+    this.setState({registrationForm: newState});
+  }
   render() {
     return (
       <div>
         <NavBar
           userLoggedIn={this.state.userLoggedIn}
-          toggleLogin={this.toggleLoginForm}/>
+          toggleLogin={this.toggleLoginForm}
+          toggleRegistration={this.toggleRegistrationForm}/>
         {this.state.loginForm && <LoginForm toggle={this.toggleLoginForm}/>}
-        {this.state.registrationForm && <RegistrationForm />}
+        {this.state.registrationForm && <RegistrationForm toggle={this.toggleRegistrationForm} toggleLogin={this.toggleLoginForm}/>}
       </div>
     );
   }

@@ -8,6 +8,7 @@ class Dropdown extends React.Component {
     this.state = {isOpen: false};
     this.toggleList = this.toggleList.bind(this);
     this.handleClickLogin = this.handleClickLogin.bind(this);
+    this.handleClickRegister = this.handleClickRegister.bind(this);
   }
 
   toggleList() {
@@ -18,6 +19,11 @@ class Dropdown extends React.Component {
   handleClickLogin() {
     this.toggleList();
     this.props.toggleLogin();
+  }
+
+  handleClickRegister() {
+    this.toggleList();
+    this.props.toggleRegistration();
   }
 
   render() {
@@ -32,7 +38,7 @@ class Dropdown extends React.Component {
         list = (
           <div>
             <Button onClick={this.handleClickLogin} value="  log in" icon="log-in" />
-            <Button onClick={this.props.toggleRegister} value="  register" icon="pencil" />
+            <Button onClick={this.handleClickRegister} value="  register" icon="pencil" />
           </div>
         );
       }

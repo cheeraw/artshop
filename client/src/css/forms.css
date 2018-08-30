@@ -296,3 +296,11 @@
   width: 350px;
   float: left;
 }
+
+.center-wrapper .success-text {
+
+  margin-top: 80px;
+  color: cornflowerblue;
+  font-size: 40px;
+  font-family: Kaushan script;
+}

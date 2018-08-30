@@ -6,7 +6,6 @@ import statusOk from './misc/ok.png';
 import statusNotOk from './misc/notOk.png';
 import statusLoading from './misc/loading.png';
 
-
 const request = require('superagent');
 //const nocache = require('superagent-no-cache');
 //const prefix = require('superagent-prefix')('/static');
@@ -45,7 +44,7 @@ class RegistrationForm extends React.Component {
       country: data.country,
       city: data.city
     });
-    this.setState({ step: number })
+    this.setState({ step: number });
   }
 
   submitForm() {
@@ -70,6 +69,10 @@ class RegistrationForm extends React.Component {
           if (res.body.message === "success") {
             console.log("success");
             this.setState({regStatus: "success", step: 0});
+            setTimeout(() => {
+              this.props.toggle();
+              this.props.toggleLogin();
+            }, 2000);
           } else if (res.body.message === "failed") {
             this.setState({regStatus: "failed"});
             console.log("failed");
@@ -85,21 +88,23 @@ class RegistrationForm extends React.Component {
     return (
       <div className="form-wrapper">
         <div className="center-wrapper">
+          {this.state.regStatus !== "success" &&
           <Button
             className="closeButton"
             icon="remove"
             onClick={this.props.toggle}
-          />
+          />}
+          {this.state.regStatus !== "success" &&
           <div className="steps">
-            <button className={this.state.step === 1 ? "firstbtn btnactive" : "firstbtn"} onClick={() => this.steps(1)}/>
-            <button className={this.state.step === 2 ? "secondbtn btnactive" : "secondbtn"} onClick={() => this.steps(2)}/>
-            <button className={this.state.step === 3 ? "thirdbtn btnactive" : "thirdbtn"} onClick={() => this.steps(3)}/>
-          </div>
+            <button className={this.state.step === 1 ? "firstbtn btnactive" : "firstbtn"} onClick={() => this.steps(1)} disabled/>
+            <button className={this.state.step === 2 ? "secondbtn btnactive" : "secondbtn"} onClick={() => this.steps(2)} disabled/>
+            <button className={this.state.step === 3 ? "thirdbtn btnactive" : "thirdbtn"} onClick={() => this.steps(3)} disabled/>
+          </div>}
           <Credentials next={this.saveCredentials} visible={this.state.step === 1 ? "contents visible" : "contents"}/>
           <PersonalInfo  next={this.savePersonalInfo} visible={this.state.step === 2 ? "contents visible" : "contents"}/>
           <Final submit={this.submitForm} visible={this.state.step === 3 ? "contents visible" : "contents"}/>
           {this.state.regStatus === "success" &&
-            <div>
+            <div className="success-text">
               registration successful
             </div>}
         </div>
@@ -389,6 +394,16 @@ class PersonalInfo extends React.Component {
     var str = e.target.value;
     e.target.value = str.replace(regex("name"), '');
 
+    if(this.state.firstname !== "" &&
+      this.state.lastname !== "" &&
+      this.state.country !== "" &&
+      this.state.city !== "") {
+        this.setState({ nextEnabled: true });
+    }
+    else {
+      this.setState({ nextEnabled: false });
+    }
+
     switch(name) {
       case "first":
         this.setState({ firstname: str });
@@ -416,10 +431,9 @@ class PersonalInfo extends React.Component {
         this.state.city !== "") {
           this.setState({ nextEnabled: true });
       }
-      console.log(this.state.firstname);
-      console.log(this.state.lastname);
-      console.log(this.state.country);
-      console.log(this.state.city);
+      else {
+        this.setState({ nextEnabled: false });
+      }
     },200);
   }
 
